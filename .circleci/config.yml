@@ -22,10 +22,11 @@ jobs:
       - docker/check
       - docker/build:
           image: thalesog/bullboard
+          tag: $CIRCLE_TAG
       - docker/push:
           digest-path: /tmp/digest.txt
           image: thalesog/bullboard
-          tag: latest
+          tag: $CIRCLE_TAG
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"

@@ -4,11 +4,5 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     '@semantic-release/github',
-    [
-      'semantic-release-docker',
-      {
-        name: 'thalesog/bullboard',
-      },
-    ],
   ],
 };
