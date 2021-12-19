@@ -6,7 +6,7 @@ import Queue from 'bull';
 import { Queue as MqQueue } from 'bullmq';
 import express from 'express';
 import redis from 'redis';
-import session from 'express-session';
+import session from 'cookie-session';
 import passport from 'passport';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import bodyParser from 'body-parser';
@@ -75,8 +75,8 @@ const sessionOpts = {
 };
 
 app.use(session(sessionOpts));
-app.use(passport.initialize({}));
-app.use(passport.session({}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 if (config.AUTH_ENABLED) {

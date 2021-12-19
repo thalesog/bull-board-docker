@@ -1,5 +1,5 @@
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
+import { Strategy } from 'passport-local';
 import express from 'express';
 import { config } from './config';
 
@@ -7,7 +7,7 @@ export const authRouter = express.Router();
 export default authRouter;
 
 passport.use(
-  new LocalStrategy((username, password, cb) => {
+  new Strategy((username, password, cb) => {
     if (username === config.USER_LOGIN && password === config.USER_PASSWORD) {
       return cb(null, { user: 'bull-board' });
     }
@@ -16,11 +16,11 @@ passport.use(
   })
 );
 
-passport.serializeUser((user, cb) => {
+passport.serializeUser<any>((user, cb) => {
   cb(null, user);
 });
 
-passport.deserializeUser((user, cb) => {
+passport.deserializeUser<any>((user, cb) => {
   cb(null, user);
 });
 

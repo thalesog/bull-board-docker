@@ -1,22 +1,21 @@
 {
   "name": "bullboard",
-  "author": {
-    "name": "Thales Ogliari",
-    "url": "https://github.com/thalesog"
-  },
+  "author": "Thales Ogliari <thalesog@me.com>",
   "version": "0.0.0-development",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf -rf dist",
+    "tsc": "tsc -p tsconfig.json",
     "start": "ts-node src/index.ts",
     "start:prod": "node dist/index.js",
-    "build": "rimraf -rf dist && tsc -p tsconfig.json",
+    "build": "npm-run-all clean lint tsc copy-assets",
     "dev": "nodemon src/index.ts",
-    "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "commit": "cz",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "copy-assets": "ts-node tools/copyAssets"
   },
   "dependencies": {
     "@bull-board/api": "^3.2.6",
@@ -25,20 +24,26 @@
     "bull": "^3.13.0",
     "bullmq": "^1.8.4",
     "connect-ensure-login": "^0.1.1",
+    "cookie-session": "^2.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "fastify": "^3.25.0",
-    "fastify-express": "^0.3.3",
     "morgan": "^1.10.0",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "redis": "^3.1.2"
+    "redis": "^3.1.2",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@types/bull": "^3.15.7",
+    "@types/connect-ensure-login": "^0.1.7",
+    "@types/cookie-session": "^2.0.43",
     "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.0",
+    "@types/passport": "^1.0.7",
+    "@types/passport-local": "^1.0.34",
+    "@types/shelljs": "^0.8.10",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.5.0",
