@@ -1,10 +1,22 @@
-FROM node:14.17-alpine
+## this is the stage one , also know as the build step
 
-WORKDIR /usr/app
+FROM node:lts
+WORKDIR /usr/src/app
+COPY package.json ./
+COPY yarn.lock ./
+COPY . .
+RUN yarn install
+RUN yarn type-check
 
-COPY ./package.json .
-COPY ./yarn.lock .
+## this is stage two , where the app actually runs
 
+FROM node:lts
+
+WORKDIR /usr/src/app
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn install --production
+COPY --from=0 /usr/src/app/dist ./dist
 ENV NODE_ENV production
 ENV REDIS_HOST localhost
 ENV REDIS_PORT 6379
@@ -16,13 +28,6 @@ ENV USER_LOGIN ''
 ENV USER_PASSWORD ''
 ENV REDIS_DB 0
 ENV PROXY_PATH ''
+EXPOSE 3000
+CMD yarn start:prod
 
-RUN yarn install
-
-COPY . .
-
-ARG PORT=3000
-ENV PORT $PORT
-EXPOSE $PORT
-
-CMD ["node", "src/index.js"]

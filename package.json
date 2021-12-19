@@ -1,10 +1,16 @@
 {
   "name": "bullboard",
   "version": "2.0.3",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "node ."
+    "start": "ts-node .",
+    "start:prod": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "type-check": "tsc",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "commit": "cz"
   },
   "dependencies": {
     "@bull-board/api": "^3.2.6",
@@ -22,5 +28,22 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/bull": "^3.15.7",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   }
 }
