@@ -1,17 +1,22 @@
 {
   "name": "bullboard",
+  "author": {
+    "name": "Thales Ogliari",
+    "url": "https://github.com/thalesog"
+  },
   "version": "0.0.0-development",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node .",
+    "start": "ts-node src/index.ts",
     "start:prod": "node dist/index.js",
+    "build": "rimraf -rf dist && tsc -p tsconfig.json",
     "dev": "nodemon src/index.ts",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
     "commit": "cz",
-    "semantic-release": "semantic-release"
+    "release": "semantic-release"
   },
   "dependencies": {
     "@bull-board/api": "^3.2.6",
@@ -44,6 +49,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
     "semantic-release": "^18.0.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"

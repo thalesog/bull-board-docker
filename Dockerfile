@@ -6,7 +6,7 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY . .
 RUN yarn install
-RUN yarn type-check
+RUN yarn build
 
 ## this is stage two , where the app actually runs
 
