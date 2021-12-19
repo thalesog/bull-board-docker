@@ -8,7 +8,7 @@
     "clean": "rimraf -rf dist",
     "tsc": "tsc -p tsconfig.json",
     "start": "ts-node src/index.ts",
-    "start:prod": "node dist/index.js",
+    "start:prod": "node dist/src/index.js",
     "build": "npm-run-all clean tsc copy-assets",
     "dev": "nodemon src/index.ts",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
