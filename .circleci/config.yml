@@ -25,7 +25,7 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: thalesog/bullboard
-          tag: $CIRCLE_TAG
+          tag: latest
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
