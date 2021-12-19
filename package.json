@@ -9,7 +9,7 @@
     "tsc": "tsc -p tsconfig.json",
     "start": "ts-node src/index.ts",
     "start:prod": "node dist/index.js",
-    "build": "npm-run-all clean lint tsc copy-assets",
+    "build": "npm-run-all clean tsc copy-assets",
     "dev": "nodemon src/index.ts",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
