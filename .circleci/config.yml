@@ -29,6 +29,13 @@ jobs:
           tag: $CIRCLE_TAG
       - run:
           command: |
+            docker tag thalesog/bullboard:$CIRCLE_TAG thalesog/bullboard:latest
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: thalesog/bullboard
+          tag: latest
+      - run:
+          command: |
             echo "Digest is: $(</tmp/digest.txt)"
 workflows:
   version: 2
