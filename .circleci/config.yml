@@ -2,6 +2,17 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.0.1
 jobs:
+  release:
+    docker:
+      - image: 'circleci/node:lts'
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: yarn install
+      - run:
+          name: release
+          command: yarn release || true
   build-and-push:
     executor: docker/docker
     steps:
@@ -18,6 +29,9 @@ jobs:
             echo "Digest is: $(</tmp/digest.txt)"
 workflows:
   version: 2
+  release:
+    jobs:
+      - release
   build-master:
     jobs:
       - build-and-push:
