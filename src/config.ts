@@ -9,7 +9,9 @@ function normalizePath(pathStr?: string) {
 const PROXY_PATH = normalizePath(process.env.PROXY_PATH);
 
 export const config = {
-  REDIS_PORT: (process.env.REDIS_PORT && +process.env.REDIS_PORT) || 6379,
+  REDIS_PORT:
+    (process.env.REDIS_PORT && !Number.isNaN(process.env.REDIS_PORT) && +process.env.REDIS_PORT) ||
+    6379,
   REDIS_HOST: process.env.REDIS_HOST || 'localhost',
   REDIS_DB: (process.env.REDIS_DB && +process.env.REDIS_DB) || 0,
   REDIS_PASSWORD: process.env.REDIS_PASSWORD,

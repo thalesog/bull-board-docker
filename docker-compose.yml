@@ -1,27 +1,35 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_PASSWORD=redis
+    restart: always
   bullboard:
     container_name: bullboard-dev
     build:
       dockerfile: ./Dockerfile
       context: .
     restart: always
+    depends_on:
+      - redis
     ports:
       - 3000:3000
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_USE_TLS: false
-      REDIS_PASSWORD: ''
+      REDIS_PASSWORD: redis
       BULL_PREFIX: bull
       BULL_VERSION: BULLMQ
-      USER_LOGIN: ''
-      USER_PASSWORD: ''
+      USER_LOGIN: 'thalesog'
+      USER_PASSWORD: 'password'
       REDIS_DB: 0
       PROXY_PATH: ''
 
 networks:
   default:
-    name: dev-master
-    external: true
+    name: bullboard-dev

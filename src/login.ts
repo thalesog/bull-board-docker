@@ -1,6 +1,6 @@
+import express from 'express';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
-import express from 'express';
 import { config } from './config';
 
 export const authRouter = express.Router();

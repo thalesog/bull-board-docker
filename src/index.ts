@@ -2,17 +2,17 @@ import { createBullBoard } from '@bull-board/api';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { ExpressAdapter } from '@bull-board/express';
+import bodyParser from 'body-parser';
 import Queue from 'bull';
 import { Queue as MqQueue } from 'bullmq';
+import { ensureLoggedIn } from 'connect-ensure-login';
+import session from 'cookie-session';
 import express from 'express';
 import Redis from 'ioredis';
-import session from 'cookie-session';
-import passport from 'passport';
-import { ensureLoggedIn } from 'connect-ensure-login';
-import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import { authRouter } from './login';
+import passport from 'passport';
 import { config } from './config';
+import { authRouter } from './login';
 
 const redisConfig = {
   redis: {

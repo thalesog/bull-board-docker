@@ -1,6 +1,6 @@
 ## this is the stage one , also know as the build step
 
-FROM node:lts
+FROM node:lts-alpine
 WORKDIR /usr/src/app
 COPY package.json ./
 COPY yarn.lock ./
@@ -10,7 +10,7 @@ RUN yarn build
 
 ## this is stage two , where the app actually runs
 
-FROM node:lts
+FROM node:lts-alpine
 
 WORKDIR /usr/src/app
 COPY package.json ./
